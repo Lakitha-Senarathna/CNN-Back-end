@@ -1,0 +1,14 @@
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Large datasets (adjust to your actual dataset folder name)
+dataset/
+data/
+fastapi_env/
