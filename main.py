@@ -13,9 +13,9 @@ Class_Names = ["Benign", "Malignant"]
 
 def preprocess_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes))
-    image = image.resize((224, 224))  # Resize the image to the required input size
+    image = image.resize((224, 224))                # Resize the image to the input size expected by the model
     image_array = np.array(image)
-    image_array = np.array(image_array) / 255.0  # Normalize the image
+    image_array = np.array(image_array) / 255.0     # Normalize the image
     return np.expand_dims(image, axis=0)
 
 @app.get("/")
@@ -26,7 +26,7 @@ async def root():
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     image = await file.read()
-    image_data = preprocess_image(image)  # Preprocess the image as required by your model
+    image_data = preprocess_image(image)            # Preprocess the image as required by the model
     prediction = model.predict(image_data)
 
     predicted_class_index = np.argmax(prediction[0])
